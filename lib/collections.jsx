@@ -1,4 +1,9 @@
-Posts = new Meteor.Collection('posts');
+Posts = new Meteor.Collection('posts', {
+  transform: (post) => {
+    post.fieldAddedByTransform = "Transform works!";
+    return post;
+  }
+});
 if(Meteor.isServer) {
   Posts.remove({});
   Posts.insert({
